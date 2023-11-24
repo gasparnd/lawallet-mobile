@@ -11,8 +11,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
-import AuthProvider from 'context/AuthContext';
+
 import Router from 'navigation/Router';
+import AuthProvider from 'context/AuthContext';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
