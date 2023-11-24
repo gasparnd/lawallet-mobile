@@ -9,6 +9,7 @@ import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+
 import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
 import AuthProvider from 'context/AuthContext';
 import Router from 'navigation/Router';
@@ -18,6 +19,7 @@ function App(): JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
   return (
     <NavigationContainer
       theme={isDarkMode ? CustomDarkTheme : CustomLightTheme}>
