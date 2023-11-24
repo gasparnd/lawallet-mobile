@@ -9,10 +9,9 @@ import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-import {CustomDarkTheme, CustomLightTheme} from './app/constants/themes';
-import AuthProvider from './app/context/AuthContext';
-import Router from './app/navigation/Router';
+import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
+import AuthProvider from 'context/AuthContext';
+import Router from 'navigation/Router';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

@@ -1,6 +1,6 @@
 import {Button, Text, View} from 'react-native';
 import React from 'react';
-import {useAuth} from '../../context/AuthContext';
+import {useAuth} from 'context/AuthContext';
 
 export default function AccessScreen() {
   const {loginWitPrivateKey} = useAuth();
