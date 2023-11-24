@@ -4,6 +4,7 @@
     "paths": {
       "*": ["./app/*"],
       "@components": ["./app/components/index"],
+      "@ui": ["./app/ui/index"],
       "@navigation": ["./app/navigation"],
       "@screens": ["./app/screens"],
       "@lib": ["./app/lib"],
