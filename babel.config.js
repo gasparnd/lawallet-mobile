@@ -21,6 +21,7 @@ module.exports = {
           components: './app/components',
           screens: './app/screens',
           navigation: './app/navigation',
+          lib: './app/lib',
           constants: './app/constants',
           context: './app/context',
         },

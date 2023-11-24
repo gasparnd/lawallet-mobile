@@ -6,6 +6,7 @@
       "@components": ["./app/components/index"],
       "@navigation": ["./app/navigation"],
       "@screens": ["./app/screens"],
+      "@lib": ["./app/lib"],
       "@constants": ["./app/constants"],
       "@context": ["./app/context"],
       "@hooks": ["./app/hooks/index"]
