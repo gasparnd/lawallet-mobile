@@ -1,20 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {Button, Container, CustomText, Flex, Row} from 'ui';
 import {Logo} from 'components';
-import {useAuth} from 'context/AuthContext';
 import {useColors} from 'hooks/useColors';
+
+import {AuthStackParamList} from 'navigation/AuthStack';
 
 const {version} = require('../../../app.json');
 
 export default function AccessScreen() {
-  const {loginWitPrivateKey} = useAuth();
+  const {navigate} = useNavigation<NavigationProp<AuthStackParamList>>();
   const {colors} = useColors();
 
   const onLogin = () => {
-    loginWitPrivateKey('');
+    navigate('Login');
   };
   return (
     <SafeAreaView>
