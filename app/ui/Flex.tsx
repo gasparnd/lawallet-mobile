@@ -8,6 +8,7 @@ export interface FlexProps {
   align?: 'start' | 'end' | 'center';
   style?: ViewStyle;
   fullWidth?: boolean;
+  fullHeight?: boolean;
   isFlex?: boolean;
 }
 
@@ -19,12 +20,14 @@ export default function Flex({
   children,
   style,
   fullWidth = false,
+  fullHeight = false,
   isFlex = false,
 }: PropsWithChildren<FlexProps>): React.JSX.Element {
   const styles = StyleSheet.create({
     base: {
       ...style,
       width: fullWidth ? '100%' : undefined,
+      height: fullHeight ? '100%' : undefined,
       flex: isFlex ? 1 : 0,
     },
     // flexDirection

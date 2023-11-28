@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator();
 
 export default function AuthStack() {
   return (
-    <Stack.Navigator initialRouteName={authRouteNames.Access}>
+    <Stack.Navigator
+      initialRouteName={authRouteNames.Access}
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name={authRouteNames.Access} component={AccessScreen} />
     </Stack.Navigator>
   );
