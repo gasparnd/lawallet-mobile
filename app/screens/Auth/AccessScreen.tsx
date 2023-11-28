@@ -14,11 +14,11 @@ export default function AccessScreen() {
     <View>
       <CustomText>LaWallet</CustomText>
       <Button
+        loading
         text="Button "
         onPress={onLogin}
         type="filled"
         color="secondary"
-        size="small"
       />
     </View>
   );

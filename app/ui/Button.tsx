@@ -1,6 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {useColors} from 'hooks/useColors';
 import Row from './Row';
@@ -17,6 +23,8 @@ export interface ButtonProps {
   type?: ButtonTypes;
   color?: ButtonColors;
   size?: ButtonSize;
+  disable?: boolean;
+  loading?: boolean;
 }
 
 export default function Button({
@@ -25,6 +33,8 @@ export default function Button({
   type,
   color = 'primary',
   size = 'large',
+  disable,
+  loading,
 }: ButtonProps): React.JSX.Element {
   const {colors} = useColors();
   let backgroundColor: string = 'transparent';
@@ -50,9 +60,10 @@ export default function Button({
       break;
   }
   const handlePress = () => {
-    if (!onPress) {
+    if (!onPress || disable) {
       return;
     }
+    onPress();
   };
 
   const styles = StyleSheet.create({
@@ -87,7 +98,11 @@ export default function Button({
         <TouchableOpacity
           style={[styles.smallButton, styles.base]}
           onPress={handlePress}>
-          <Text style={styles.smallText}>{text}</Text>
+          {loading ? (
+            <ActivityIndicator color={textColor} size="small" />
+          ) : (
+            <Text style={styles.smallText}>{text}</Text>
+          )}
         </TouchableOpacity>
       </View>
     );
@@ -97,7 +112,11 @@ export default function Button({
       style={[styles.largeButton, styles.base]}
       onPress={handlePress}>
       <Row justifyContent="center">
-        <Text style={styles.text}>{text}</Text>
+        {loading ? (
+          <ActivityIndicator color={textColor} />
+        ) : (
+          <Text style={styles.text}>{text}</Text>
+        )}
       </Row>
     </TouchableOpacity>
   );
