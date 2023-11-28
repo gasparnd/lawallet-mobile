@@ -2,7 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 
 import {useAuth} from 'context/AuthContext';
-import {Button, CustomText} from 'ui';
+import {Button, CustomText, Row} from 'ui';
+import {Logo} from 'components';
 
 export default function AccessScreen() {
   const {loginWitPrivateKey} = useAuth();
@@ -12,6 +13,9 @@ export default function AccessScreen() {
   };
   return (
     <View>
+      <Row justifyContent="center">
+        <Logo size={200} />
+      </Row>
       <CustomText>LaWallet</CustomText>
       <Button
         loading

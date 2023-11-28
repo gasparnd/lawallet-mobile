@@ -18,7 +18,7 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          components: './app/components',
+          components: './app/components/index',
           ui: './app/ui/index',
           screens: './app/screens',
           navigation: './app/navigation',
