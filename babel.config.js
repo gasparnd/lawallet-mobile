@@ -18,13 +18,14 @@ module.exports = {
       'module-resolver',
       {
         alias: {
-          components: './app/components/index',
-          ui: './app/ui/index',
+          components: './app/components',
+          ui: './app/ui',
           screens: './app/screens',
           navigation: './app/navigation',
           lib: './app/lib',
           constants: './app/constants',
           context: './app/context',
+          hooks: './app/hooks',
         },
       },
     ],

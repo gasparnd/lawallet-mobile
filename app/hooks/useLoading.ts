@@ -5,7 +5,7 @@ export type UseLoading = {
   withLoading: <T>(fn: () => Promise<T>) => Promise<T>;
 };
 
-export default function useLoading(): UseLoading {
+export function useLoading(): UseLoading {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const withLoading = async <T>(fn: () => Promise<T>): Promise<T> => {

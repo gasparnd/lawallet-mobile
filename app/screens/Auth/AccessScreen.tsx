@@ -1,6 +1,7 @@
-import {Button, Text, View} from 'react-native';
+import {Button, View} from 'react-native';
 import React from 'react';
 import {useAuth} from 'context/AuthContext';
+import CustomText from 'ui/CustomText';
 
 export default function AccessScreen() {
   const {loginWitPrivateKey} = useAuth();
@@ -10,7 +11,7 @@ export default function AccessScreen() {
   };
   return (
     <View>
-      <Text>LaWallet</Text>
+      <CustomText>LaWallet</CustomText>
       <Button title="Login" onPress={onLogin} />
     </View>
   );

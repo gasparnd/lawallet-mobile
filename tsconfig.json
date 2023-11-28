@@ -3,14 +3,14 @@
   "compilerOptions": {
     "paths": {
       "*": ["./app/*"],
-      "@components": ["./app/components/index"],
-      "@ui": ["./app/ui/index"],
-      "@navigation": ["./app/navigation"],
-      "@screens": ["./app/screens"],
-      "@lib": ["./app/lib"],
-      "@constants": ["./app/constants"],
-      "@context": ["./app/context"],
-      "@hooks": ["./app/hooks/index"]
+      "components/*": ["./app/components"],
+      "ui/*": ["./app/ui"],
+      "navigation/*": ["./app/navigation"],
+      "screens/*": ["./app/screens"],
+      "lib/*": ["./app/lib"],
+      "constants/*": ["./app/constants"],
+      "context/*": ["./app/context"],
+      "hooks/*": ["./app/hooks"]
     }
   }
 }

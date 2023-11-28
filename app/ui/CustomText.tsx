@@ -1,8 +1,8 @@
 import {Colors} from 'constants/colors';
+import {useColors} from 'hooks/useColors';
+
 import React, {PropsWithChildren} from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
-
-import {useColors} from 'hooks';
 
 // import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat'
 
