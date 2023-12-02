@@ -6,3 +6,4 @@ export {default as Divider} from './Divider';
 export {default as Flex} from './Flex';
 export {default as Heading} from './Heading';
 export {default as Row} from './Row';
+export {default as Input} from './Input';
