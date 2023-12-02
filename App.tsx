@@ -13,7 +13,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
 
 import Router from 'navigation/Router';
-import AuthProvider from 'context/AuthContext';
+import {AuthProvider} from 'context';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

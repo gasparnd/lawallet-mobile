@@ -1,4 +1,4 @@
-import {useColors} from 'hooks/useColors';
+import {useColors} from 'hooks';
 import React, {useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 

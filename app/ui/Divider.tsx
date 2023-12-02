@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
-import {useColors} from 'hooks/useColors';
+import {useColors} from 'hooks';
 
 export interface IDividerProps {
   x?: number;
@@ -16,7 +16,7 @@ export default function Divider({
 }: IDividerProps): React.JSX.Element {
   const {colors} = useColors();
 
-  const border = line
+  const border: ViewStyle = line
     ? {
         borderWidth: 0.5,
         width: '100%',

@@ -1,11 +1,7 @@
 import React, {PropsWithChildren} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-
-import {useColors} from 'hooks/useColors';
+import {View, StyleSheet} from 'react-native';
 
 export default function RightGroup({children}: PropsWithChildren) {
-  const {colors} = useColors();
-
   const styles = StyleSheet.create({
     container: {
       alignItems: 'baseline',

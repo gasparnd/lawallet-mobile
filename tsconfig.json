@@ -5,12 +5,12 @@
       "*": ["./app/*"],
       "components/*": ["./app/components/index"],
       "ui/*": ["./app/ui/index"],
-      "navigation/*": ["./app/navigation"],
-      "screens/*": ["./app/screens"],
-      "lib/*": ["./app/lib"],
-      "constants/*": ["./app/constants"],
-      "context/*": ["./app/context"],
-      "hooks/*": ["./app/hooks"]
+      "navigation/*": ["./app/navigation/*"],
+      "screens/*": ["./app/screens/*"],
+      "lib/*": ["./app/lib/*"],
+      "constants/*": ["./app/constants/*"],
+      "context/*": ["./app/context/index"],
+      "hooks/*": ["./app/hooks/index"]
     }
   }
 }

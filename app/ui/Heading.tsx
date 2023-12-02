@@ -2,8 +2,7 @@ import React, {PropsWithChildren} from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
 
 import {Colors} from 'constants/colors';
-import {useColors} from 'hooks/useColors';
-import {useDeviceDimensions} from 'hooks/useDeviceDimensions';
+import {useColors, useDeviceDimensions} from 'hooks';
 
 export interface HeadingProps {
   type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

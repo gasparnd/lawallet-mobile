@@ -5,9 +5,9 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {Button, Container, CustomText, Flex, Row} from 'ui';
 import {Logo} from 'components';
-import {useColors} from 'hooks/useColors';
 
 import {AuthStackParamList} from 'navigation/AuthStack';
+import {useColors} from 'hooks';
 
 const {version} = require('../../../app.json');
 

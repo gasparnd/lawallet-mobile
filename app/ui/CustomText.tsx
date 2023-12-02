@@ -1,5 +1,5 @@
 import {Colors} from 'constants/colors';
-import {useColors} from 'hooks/useColors';
+import {useColors} from 'hooks';
 
 import React, {PropsWithChildren} from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';

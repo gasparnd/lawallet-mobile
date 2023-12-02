@@ -1,6 +1,6 @@
 import {useWindowDimensions} from 'react-native';
 
-export function useDeviceDimensions() {
+export default function useDeviceDimensions() {
   const {height, width} = useWindowDimensions();
   const isDeviceSmall: boolean = height <= 650;
 
