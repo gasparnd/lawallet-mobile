@@ -1,44 +1,45 @@
-import {useColors} from 'hooks';
 import React, {useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 
-import {Container, CustomText, Divider, Heading, Input} from 'ui';
+import {useAuth} from 'context';
+import {Button, Container, Divider, Heading, Input, WithFixedBottom} from 'ui';
+import {useLoading} from 'hooks';
 
 export default function LoginScreen() {
-  const [textValue, setTextValue] = useState<string>('');
-  const {colors} = useColors();
+  const {withLoading, isLoading} = useLoading();
+  const {loginWithPrivateKey} = useAuth();
+  const [privateKey, setPrivateKey] = useState<string>('');
+
+  const handleLogin = () => {
+    if (privateKey) {
+      withLoading(async () => await loginWithPrivateKey(privateKey));
+    }
+  };
+
   return (
     <SafeAreaView>
       <Container>
-        <Heading type="h4">Registra tu usuario</Heading>
-        <Input
-          width="60%"
-          state="normal"
-          onChange={setTextValue}
-          rightGroup={
-            <View
-              style={{
-                backgroundColor: colors.black,
-                height: '100%',
-                alignSelf: 'flex-end',
-                justifyContent: 'center',
-                paddingHorizontal: 20,
-              }}>
-              <CustomText size="small">@lacrypta.ar</CustomText>
-            </View>
-          }
-        />
-        <Divider y={4} />
-        <Input state="error" onChange={setTextValue} />
-        <Divider y={4} />
-        <Input state="success" onChange={setTextValue} />
-        <Divider y={4} />
-        <Input state="loading" onChange={setTextValue} />
-        <Divider y={4} />
-        <Input disable onChange={setTextValue} />
-        <Divider y={4} />
-
-        <CustomText>{textValue}</CustomText>
+        <WithFixedBottom
+          bottom={
+            <Button
+              disable={privateKey.length === 0}
+              loading={isLoading}
+              text="Ingresar"
+              onPress={handleLogin}
+              type="filled"
+            />
+          }>
+          <Divider y={10} />
+          <Heading type="h4">Inicia sesion</Heading>
+          <Divider y={10} />
+          <Input
+            value={privateKey}
+            autoCapitalize="none"
+            state="normal"
+            placeholder="Ingresa tu clave privada"
+            onChange={setPrivateKey}
+          />
+        </WithFixedBottom>
       </Container>
     </SafeAreaView>
   );

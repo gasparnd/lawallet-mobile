@@ -2,6 +2,7 @@
 import React from 'react';
 import {
   ActivityIndicator,
+  DimensionValue,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -23,6 +24,7 @@ export interface ButtonProps {
   type?: ButtonTypes;
   color?: ButtonColors;
   size?: ButtonSize;
+  width?: DimensionValue;
   disable?: boolean;
   loading?: boolean;
 }
@@ -35,6 +37,7 @@ export default function Button({
   size = 'large',
   disable,
   loading,
+  width,
 }: ButtonProps): React.JSX.Element {
   const {colors} = useColors();
   let backgroundColor: string = 'transparent';
@@ -43,6 +46,9 @@ export default function Button({
   switch (type) {
     case 'filled':
       backgroundColor = colors[color];
+      if (disable) {
+        backgroundColor = colors.gray40;
+      }
       textColor = colors.black;
       break;
     case 'bezeled':
@@ -72,7 +78,7 @@ export default function Button({
     },
     largeButton: {
       backgroundColor,
-      width: '100%',
+      width: width || '100%',
       paddingVertical: 15,
       paddingHorizontal: 4,
     },

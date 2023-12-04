@@ -1,9 +1,19 @@
+import 'text-encoding';
+
 import * as React from 'react';
+import {ApiResponse} from 'apisauce';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getPublicKey, nip19} from 'nostr-tools';
+
+import {identityApi} from 'lib/api';
+import {UserIdentity} from 'types/identity';
+import {useUser} from './UserContext';
 
 type AuthContext = {
   logged?: boolean;
-  loginWitPrivateKey: (privateKey: string) => void;
+  loginWithPrivateKey: (privateKey: string) => void;
   logout: () => void;
+  loginError: string | null;
 };
 
 export type LoginValues = {
@@ -14,16 +24,40 @@ export type LoginValues = {
 
 const AuthContext = React.createContext<AuthContext>({
   logged: true,
-  loginWitPrivateKey: () => null,
+  loginWithPrivateKey: () => null,
   logout: () => null,
+  loginError: null,
 });
 
 export default function AuthProvider({children}: React.PropsWithChildren<any>) {
   const [logged, setLogged] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const {setUser} = useUser();
 
-  const loginWitPrivateKey = async (privateKey: string) => {
-    console.log(privateKey);
-    setLogged(true);
+  const loginWithPrivateKey = async (privateKey: string) => {
+    try {
+      const hexpub: string = getPublicKey(privateKey);
+      const response: ApiResponse<UserIdentity> = await identityApi.get(
+        `api/pubkey/${hexpub}`,
+      );
+      if (response.status === 200 && response.data) {
+        const data = response.data;
+        const identity: UserIdentity = {
+          nonce: '',
+          card: [],
+          username: data?.username,
+          hexpub,
+          npub: nip19.npubEncode(hexpub),
+          privateKey,
+        };
+        const jsonValue = JSON.stringify(identity);
+        await AsyncStorage.setItem('userIdentity', jsonValue);
+        setUser(identity);
+        setLogged(true);
+      }
+    } catch (requestError: any) {
+      setError(requestError);
+    }
   };
 
   const logout = async () => {
@@ -31,7 +65,8 @@ export default function AuthProvider({children}: React.PropsWithChildren<any>) {
   };
 
   return (
-    <AuthContext.Provider value={{logged, loginWitPrivateKey, logout}}>
+    <AuthContext.Provider
+      value={{logged, loginWithPrivateKey, logout, loginError: error}}>
       {children}
     </AuthContext.Provider>
   );

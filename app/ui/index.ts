@@ -7,3 +7,4 @@ export {default as Flex} from './Flex';
 export {default as Heading} from './Heading';
 export {default as Row} from './Row';
 export {default as Input} from './Input';
+export {default as WithFixedBottom} from './WithFixedBottom';
