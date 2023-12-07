@@ -1,18 +1,15 @@
-import 'text-encoding';
-import 'react-native-get-random-values';
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import {ApiResponse} from 'apisauce';
-import {nip19, getPublicKey, finishEvent} from 'nostr-tools';
-
-import {identityApi} from 'lib/api';
+import {getPublicKey, finishEvent} from 'nostr-tools';
 import NDK, {NDKKind} from '@nostr-dev-kit/ndk';
+
 import {RelaysList} from 'constants/relays';
+import {useUser} from 'context';
 
 export default function HomeScreen() {
-  const [user, setUser] = useState<any>();
+  const {user} = useUser();
   const [suscriber, setSuscriber] = useState<any>(null);
-  const PRIVATE_KEY: string = '';
+  const PRIVATE_KEY: string = user.privateKey;
 
   useEffect(() => {
     if (!suscriber) {
@@ -29,37 +26,6 @@ export default function HomeScreen() {
     (async () => init())();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const getUsername = async ({
-    hexpub,
-    privateKey,
-  }: {
-    hexpub: string;
-    privateKey: string;
-  }) => {
-    const res: ApiResponse<any> = await identityApi.get(
-      `/api/pubkey/${hexpub}`,
-    );
-    if (!res.data) {
-      return false;
-    }
-    const username = res.data.username;
-    const identity: any = {
-      nonce: '',
-      card: [],
-      username,
-      hexpub,
-      npub: nip19.npubEncode(hexpub),
-      privateKey: privateKey,
-    };
-    console.log(
-      '🚀 ~ file: AuthContext.tsx:59 ~ AuthProvider ~ identity:',
-      identity,
-    );
-    setUser(identity);
-
-    return;
-  };
 
   const zapRequestEvent = async (amount: number, privateKey: string) => {
     const pubkey: string = getPublicKey(privateKey);
@@ -85,7 +51,7 @@ export default function HomeScreen() {
   const init = async () => {
     const hexpub: string = await getPublicKey(PRIVATE_KEY);
     console.log('🚀 ~ file: App.tsx:76 ~ init ~ hexpub:', hexpub);
-    await getUsername({hexpub, privateKey: PRIVATE_KEY});
+
     const invoice_mSats: number = 100 * 1000;
     await zapRequestEvent(invoice_mSats, PRIVATE_KEY);
     const ndk = new NDK({
