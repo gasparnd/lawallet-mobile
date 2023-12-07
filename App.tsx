@@ -7,7 +7,6 @@
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
 
@@ -16,9 +15,6 @@ import {AuthProvider, UserProvider} from 'context';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
     <NavigationContainer
@@ -27,7 +23,7 @@ function App(): JSX.Element {
         <AuthProvider>
           <StatusBar
             barStyle={'light-content'}
-            backgroundColor={backgroundStyle.backgroundColor}
+            backgroundColor={CustomDarkTheme.colors.background}
           />
           <Router />
         </AuthProvider>
