@@ -27,6 +27,9 @@ const icons = {
   EyeOff: ({size, color}: IconProps) => (
     <Ionicons name="eye-off" size={size} color={color} />
   ),
+  Settings: ({size, color}: IconProps) => (
+    <Ionicons name="ios-settings" size={size} color={color} />
+  ),
 };
 
 export default function Icons(props: IconsProps): React.JSX.Element {

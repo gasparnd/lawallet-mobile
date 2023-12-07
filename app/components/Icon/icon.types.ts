@@ -1,4 +1,10 @@
-export type IconNames = 'Error' | 'Alert' | 'Check' | 'Eye' | 'EyeOff';
+export type IconNames =
+  | 'Error'
+  | 'Alert'
+  | 'Check'
+  | 'Eye'
+  | 'EyeOff'
+  | 'Settings';
 
 export interface IconProps {
   size?: number;
