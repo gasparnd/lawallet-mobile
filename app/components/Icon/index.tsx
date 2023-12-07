@@ -5,25 +5,31 @@ import {MaterialIcons} from '@expo/vector-icons';
 import {AntDesign} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
 
-import {IIconProps, TIcons} from './icon.types';
+import {IconNames, IconProps} from './icon.types';
 
-interface IIcons extends IIconProps {
-  icon: TIcons;
+export interface IconsProps extends IconProps {
+  icon: IconNames;
 }
 
 const icons = {
-  Error: ({size, color}: IIconProps) => (
+  Error: ({size, color}: IconProps) => (
     <MaterialIcons name="cancel" size={size} color={color} />
   ),
-  Alert: ({size, color}: IIconProps) => (
+  Alert: ({size, color}: IconProps) => (
     <Ionicons name="alert-outline" size={size} color={color} />
   ),
-  Check: ({size, color}: IIconProps) => (
+  Check: ({size, color}: IconProps) => (
     <AntDesign name="check" size={size} color={color} />
+  ),
+  Eye: ({size, color}: IconProps) => (
+    <Ionicons name="eye" size={size} color={color} />
+  ),
+  EyeOff: ({size, color}: IconProps) => (
+    <Ionicons name="eye-off" size={size} color={color} />
   ),
 };
 
-export default function Icons(props: IIcons): React.JSX.Element {
+export default function Icons(props: IconsProps): React.JSX.Element {
   const {icon, onPress} = props;
 
   const renderIcon = () => {

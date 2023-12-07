@@ -1,6 +1,6 @@
-export type TIcons = 'Error' | 'Alert' | 'Check';
+export type IconNames = 'Error' | 'Alert' | 'Check' | 'Eye' | 'EyeOff';
 
-export interface IIconProps {
+export interface IconProps {
   size?: number;
   color?: string;
   onPress?: () => void;
