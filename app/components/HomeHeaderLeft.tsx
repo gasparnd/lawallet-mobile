@@ -1,8 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
-import {CustomText, Divider, Row} from 'ui';
 
 import {WALLET_DOMAIN} from '@env';
+import CustomText from '../ui/CustomText';
+import Divider from '../ui/Divider';
+import Row from '../ui/Row';
 import {useUser} from 'context';
 import {useColors} from 'hooks';
 import Avatar from './Avatar';
