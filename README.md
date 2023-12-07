@@ -6,7 +6,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 ## Step 1: Install dependencies and native modules
 
-First, you will need to start install all teh dependencies and native modules:
+First, you will need to start installing all the native dependencies and modules:
 
 ```bash
 # using npm
@@ -36,7 +36,7 @@ All the modules will be automatically linked by +0.60 React Native version.
 
 ## Step 2: Start the Metro Server
 
-Copy ****.env.example**** and rename it for ****.env**** Fill the items with the correct values.
+Copy \***\*.env.example\*\*** and rename it for \***\*.env\*\*** Fill the items with the correct values.
 
 ## Step 3: Start the Metro Server
 
