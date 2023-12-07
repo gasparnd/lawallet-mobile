@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {getPublicKey, finishEvent} from 'nostr-tools';
 import NDK, {NDKKind} from '@nostr-dev-kit/ndk';
 
 import {RelaysList} from 'constants/relays';
 import {useUser} from 'context';
+import {CustomText} from 'ui';
 
 export default function HomeScreen() {
   const {user} = useUser();
   const [suscriber, setSuscriber] = useState<any>(null);
   const PRIVATE_KEY: string = user.privateKey;
+  const [zaps, setZaps] = useState<number>();
 
   useEffect(() => {
     if (!suscriber) {
@@ -19,6 +21,8 @@ export default function HomeScreen() {
       const content = JSON.parse(event.content);
       const amount = content.tokens.BTC;
       console.info('Amount', amount);
+      const sats = Number(amount) / 1000;
+      setZaps(sats);
     });
   }, [suscriber]);
 
@@ -76,7 +80,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>LaWallet</Text>
+      <CustomText>{zaps ? `Recived ${zaps} SAT` : ''}</CustomText>
     </View>
   );
 }
@@ -84,7 +88,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
