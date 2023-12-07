@@ -32,7 +32,7 @@ cd ios && pod install && cd ..
 
 All the modules will be automatically linked by +0.60 React Native version.
 
-## Step 2: Enviroment variables
+## Step 2: Environment variables
 
 Copy **.env.example** and rename it for **.env** Fill the items with the correct values.
 
