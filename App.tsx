@@ -11,7 +11,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
 
 import Router from 'navigation/Router';
-import {AuthProvider, UserProvider} from 'context';
+import {AuthProvider, UserProvider, NDKProvider} from 'context';
+
+import {RelaysList} from 'constants/relays';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,15 +21,17 @@ function App(): JSX.Element {
   return (
     <NavigationContainer
       theme={isDarkMode ? CustomDarkTheme : CustomLightTheme}>
-      <UserProvider>
-        <AuthProvider>
-          <StatusBar
-            barStyle={'light-content'}
-            backgroundColor={CustomDarkTheme.colors.background}
-          />
-          <Router />
-        </AuthProvider>
-      </UserProvider>
+      <NDKProvider explicitRelayUrls={RelaysList}>
+        <UserProvider>
+          <AuthProvider>
+            <StatusBar
+              barStyle={'light-content'}
+              backgroundColor={CustomDarkTheme.colors.background}
+            />
+            <Router />
+          </AuthProvider>
+        </UserProvider>
+      </NDKProvider>
     </NavigationContainer>
   );
 }
