@@ -22,7 +22,7 @@ export default function AuthStack() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{headerTitle: ''}}
+        options={{headerTitle: '', headerBackTitleVisible: false}}
       />
     </Stack.Navigator>
   );
