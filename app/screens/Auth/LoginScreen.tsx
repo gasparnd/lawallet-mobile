@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 import {useAuth} from 'context';
 import {Button, Container, Divider, Heading, Input, WithFixedBottom} from 'ui';
 import {useLoading} from 'hooks';
 
 export default function LoginScreen() {
+  const {t} = useTranslation();
   const {withLoading, isLoading} = useLoading();
   const {loginWithPrivateKey} = useAuth();
   const [privateKey, setPrivateKey] = useState<string>('');
@@ -24,19 +26,19 @@ export default function LoginScreen() {
             <Button
               disable={privateKey.length === 0}
               loading={isLoading}
-              text="Ingresar"
+              text={t('LOGIN')}
               onPress={handleLogin}
               type="filled"
             />
           }>
           <Divider y={10} />
-          <Heading type="h4">Inicia sesion</Heading>
+          <Heading txt={t('LOGIN_TITLE')} type="h4" />
           <Divider y={10} />
           <Input
             value={privateKey}
             autoCapitalize="none"
             state="normal"
-            placeholder="Ingresa tu clave privada"
+            placeholder={t('INSERT_PRIVATE_KEY')}
             onChange={setPrivateKey}
           />
         </WithFixedBottom>

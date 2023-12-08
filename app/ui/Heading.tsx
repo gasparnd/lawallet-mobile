@@ -5,6 +5,7 @@ import {Colors} from 'constants/colors';
 import {useColors, useDeviceDimensions} from 'hooks';
 
 export interface HeadingProps {
+  txt?: string;
   type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   align?: 'left' | 'center' | 'right';
   theme?: 'auto' | 'dark' | 'light';
@@ -41,6 +42,7 @@ type Headings = {
 };
 
 export default function Heading({
+  txt,
   children,
   type = 'h1',
   align = 'left',
@@ -137,7 +139,7 @@ export default function Heading({
       numberOfLines={numberOfLines}
       allowFontScaling={scaling}
       style={[styles.base, styles[type]]}>
-      {children}
+      {txt ? txt : children}
     </RNText>
   );
 }

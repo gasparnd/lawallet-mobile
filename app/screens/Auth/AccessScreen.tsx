@@ -2,6 +2,7 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 import {Button, Container, CustomText, Flex, Row} from 'ui';
 import {Logo} from 'components';
@@ -12,6 +13,7 @@ import {useColors} from 'hooks';
 const {version} = require('../../../app.json');
 
 export default function AccessScreen() {
+  const {t} = useTranslation();
   const {navigate} = useNavigation<NavigationProp<AuthStackParamList>>();
   const {colors} = useColors();
 
@@ -40,7 +42,7 @@ export default function AccessScreen() {
             </View>
           </View>
 
-          <Button text="Iniciar sesión" onPress={onLogin} type="filled" />
+          <Button text={t('LOGIN_TITLE')} onPress={onLogin} type="filled" />
         </Flex>
       </Container>
     </SafeAreaView>

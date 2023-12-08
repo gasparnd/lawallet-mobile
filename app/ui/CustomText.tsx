@@ -7,6 +7,7 @@ import {StyleSheet, Text as RNText} from 'react-native';
 // import { useFonts, Montserrat_400Regular, Montserrat_700Bold } from '@expo-google-fonts/montserrat'
 
 export interface TextProps {
+  txt?: string;
   size?: 'normal' | 'large' | 'small';
   customSize?: number;
   numberOfLines?: number;
@@ -21,6 +22,7 @@ export interface TextProps {
 }
 
 export default function CustomText({
+  txt,
   children,
   disable = false,
   scaling = false,
@@ -90,7 +92,7 @@ export default function CustomText({
       numberOfLines={numberOfLines}
       allowFontScaling={scaling}
       style={[styles.base]}>
-      {children}
+      {txt ? txt : children}
     </RNText>
   );
 }
