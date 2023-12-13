@@ -7,7 +7,7 @@ import {
   NDKSubscriptionOptions,
 } from '@nostr-dev-kit/ndk';
 
-import {useNostrNdk} from 'context';
+import {useNostrNdk} from '../context/NDKContext';
 
 export interface IUseSubscription {
   subscription: NDKSubscription;

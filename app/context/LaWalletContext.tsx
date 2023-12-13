@@ -1,19 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {createContext, useEffect, useState} from 'react';
-
-import {useActivity, useConfiguration, useTokenBalance} from 'hooks';
+import React, {createContext, useEffect} from 'react';
 
 import {Transaction, TransactionDirection} from 'types/transaction';
-import {ConfigReturns} from 'hooks/useConfiguration';
-// import useAlert, {UseAlertReturns} from '@/hooks/useAlerts';
-
+import {TokenBalance} from 'types/balance';
+import useConfiguration, {ConfigReturns} from 'hooks/useConfiguration';
 import useCurrencyConverter, {
   UseConverterReturns,
 } from 'hooks/useCurrencyConverter';
-
-// import {AvailableLanguages} from '@/translations';
-import {TokenBalance} from 'types/balance';
 import {useUser} from './UserContext';
+import {useActivity, useTokenBalance} from 'hooks';
 
 export interface LaWalletContextType {
   balance: TokenBalance;
@@ -21,13 +16,11 @@ export interface LaWalletContextType {
   userConfig: ConfigReturns;
   // notifications: UseAlertReturns;
   converter: UseConverterReturns;
-  hydrated: boolean;
 }
 
 export const LaWalletContext = createContext({} as LaWalletContextType);
 
 export function LaWalletProvider({children}: {children: React.ReactNode}) {
-  const [hydrated, setHydrated] = useState<boolean>(false);
   const {user} = useUser();
 
   // const notifications = useAlert();
@@ -86,7 +79,6 @@ export function LaWalletProvider({children}: {children: React.ReactNode}) {
     userConfig,
     // notifications,
     converter,
-    hydrated,
   };
 
   return (
@@ -103,3 +95,5 @@ export function LaWalletProvider({children}: {children: React.ReactNode}) {
     </LaWalletContext.Provider>
   );
 }
+
+export const useLaWallet = () => React.useContext(LaWalletContext);

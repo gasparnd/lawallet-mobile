@@ -7,10 +7,11 @@
       "ui/*": ["./app/ui/index"],
       "navigation/*": ["./app/navigation/*"],
       "screens/*": ["./app/screens/*"],
+      "types/*": ["./app/types/*"],
       "lib/*": ["./app/lib/*"],
       "constants/*": ["./app/constants/*"],
       "context/*": ["./app/context/index"],
-      "hooks/*": ["./app/hooks/index"]
+      "hooks/*": ["./app/hooks/*"]
     }
   }
 }

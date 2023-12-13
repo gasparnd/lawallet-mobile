@@ -14,6 +14,7 @@ import Router from 'navigation/Router';
 import {AuthProvider, UserProvider, NDKProvider} from 'context';
 
 import {RelaysList} from 'constants/relays';
+import {LaWalletProvider} from 'context/LaWalletContext';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -24,11 +25,13 @@ function App(): JSX.Element {
       <NDKProvider explicitRelayUrls={RelaysList}>
         <UserProvider>
           <AuthProvider>
-            <StatusBar
-              barStyle={'light-content'}
-              backgroundColor={CustomDarkTheme.colors.background}
-            />
-            <Router />
+            <LaWalletProvider>
+              <StatusBar
+                barStyle={'light-content'}
+                backgroundColor={CustomDarkTheme.colors.background}
+              />
+              <Router />
+            </LaWalletProvider>
           </AuthProvider>
         </UserProvider>
       </NDKProvider>
