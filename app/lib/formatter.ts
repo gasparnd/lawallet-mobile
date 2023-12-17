@@ -1,7 +1,8 @@
 import {format} from 'date-fns';
-import {AvailableCurrencies} from 'types/config';
 import {enUS, es} from 'date-fns/locale';
-import {AvailableLanguages} from 'localization';
+
+import {AvailableCurrencies} from 'types/config';
+import {AvailableLanguages} from '@/localization';
 
 export const formatter = (
   minDecimals: number = 2,

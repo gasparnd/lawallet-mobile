@@ -1,7 +1,9 @@
-import {IDENTITY_ENDPOINT} from '@/constants/config';
-import {UserIdentity} from '@/types/identity';
-import {NostrEvent} from '@nostr-dev-kit/ndk';
 import {generatePrivateKey, getPublicKey, nip19} from 'nostr-tools';
+import {NostrEvent} from '@nostr-dev-kit/ndk';
+
+import {IDENTITY_API_ENDPOINT} from '@env';
+import {UserIdentity} from '@/types/identity';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export type IdentityResponse = {
   success: boolean;
@@ -31,12 +33,16 @@ export const generateUserIdentity = async (
 };
 
 export const validateNonce = async (nonce: string): Promise<boolean> => {
-  if (nonce === 'test') return true;
+  if (nonce === 'test') {
+    return true;
+  }
 
-  return fetch(`${IDENTITY_ENDPOINT}/api/nonce/${nonce}`)
+  return fetch(`${IDENTITY_API_ENDPOINT}/api/nonce/${nonce}`)
     .then(res => res.json())
     .then(response => {
-      if (!response || !response.status) return false;
+      if (!response || !response.status) {
+        return false;
+      }
 
       return response.status;
     })
@@ -46,7 +52,7 @@ export const validateNonce = async (nonce: string): Promise<boolean> => {
 export const claimIdentity = async (
   event: NostrEvent,
 ): Promise<IdentityResponse> => {
-  return fetch(`${IDENTITY_ENDPOINT}/api/identity`, {
+  return fetch(`${IDENTITY_API_ENDPOINT}/api/identity`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,23 +75,28 @@ export const claimIdentity = async (
     });
 };
 
-export const getUsername = (pubkey: string) => {
-  const storagedUsername: string = localStorage.getItem(pubkey) || '';
-  if (storagedUsername.length) return storagedUsername;
+export const getUsername = async (pubkey: string) => {
+  const storagedUsername: string = (await AsyncStorage.getItem(pubkey)) || '';
+  if (storagedUsername.length) {
+    return storagedUsername;
+  }
 
-  return fetch(`${IDENTITY_ENDPOINT}/api/pubkey/${pubkey}`)
+  return fetch(`${IDENTITY_API_ENDPOINT}/api/pubkey/${pubkey}`)
     .then(res => res.json())
     .then(info => {
-      if (!info || !info.username) return '';
+      if (!info || !info.username) {
+        return '';
+      }
 
-      localStorage.setItem(pubkey, info.username);
-      return info.username;
+      AsyncStorage.setItem(pubkey, info.username).then(() => {
+        return info.username;
+      });
     })
     .catch(() => '');
 };
 
 export const getUserPubkey = (username: string) =>
-  fetch(`${IDENTITY_ENDPOINT}/api/lud16/${username}`)
+  fetch(`${IDENTITY_API_ENDPOINT}/api/lud16/${username}`)
     .then(res => res.json())
     .then(info => info.accountPubKey ?? '')
     .catch(() => '');
@@ -93,7 +104,7 @@ export const getUserPubkey = (username: string) =>
 export const existIdentity = async (name: string): Promise<boolean> => {
   try {
     const response = await fetch(
-      `${IDENTITY_ENDPOINT}/api/identity?name=${name}`,
+      `${IDENTITY_API_ENDPOINT}/api/identity?name=${name}`,
     );
     return response.status === 200;
   } catch {

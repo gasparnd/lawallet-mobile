@@ -8,13 +8,15 @@ import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
-import {CustomDarkTheme, CustomLightTheme} from 'constants/themes';
-
-import Router from 'navigation/Router';
-import {AuthProvider, UserProvider, NDKProvider} from 'context';
-
-import {RelaysList} from 'constants/relays';
-import {LaWalletProvider} from 'context/LaWalletContext';
+import {CustomDarkTheme, CustomLightTheme} from '@/constants/themes';
+import {
+  AuthProvider,
+  LaWalletProvider,
+  NDKProvider,
+  UserProvider,
+} from '@/context';
+import {RelaysList} from '@/constants/relays';
+import Router from '@/navigation/Router';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

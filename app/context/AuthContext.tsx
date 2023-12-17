@@ -5,9 +5,9 @@ import {ApiResponse} from 'apisauce';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getPublicKey, nip19} from 'nostr-tools';
 
-import {identityApi} from 'lib/api';
-import {UserIdentity} from 'types/identity';
 import {useUser} from './UserContext';
+import {UserIdentity} from '@/types/identity';
+import {identityApi} from '@/lib/api';
 
 type AuthContext = {
   logged?: boolean;

@@ -5,7 +5,7 @@ import {initReactI18next} from 'react-i18next';
 import es from './locales/es/globals.json';
 import en from './locales/en/globals.json';
 
-const deviceLanguage =
+export const deviceLanguage =
   Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale ||
       NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13

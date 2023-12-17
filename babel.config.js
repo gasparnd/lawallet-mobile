@@ -17,16 +17,9 @@ module.exports = {
     [
       'module-resolver',
       {
+        root: ['./app'],
         alias: {
-          components: './app/components/index',
-          ui: './app/ui/index',
-          screens: './app/screens',
-          types: './app/types',
-          navigation: './app/navigation',
-          lib: './app/lib',
-          constants: './app/constants',
-          context: './app/context',
-          hooks: './app/hooks',
+          '@': './app',
         },
       },
     ],

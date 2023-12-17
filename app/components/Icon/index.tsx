@@ -4,8 +4,10 @@ import {TouchableOpacity} from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import {AntDesign} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
+import {Feather} from '@expo/vector-icons';
 
 import {IconNames, IconProps} from './icon.types';
+import Satoshiv2Icon from './Satoshiv2Icon';
 
 export interface IconsProps extends IconProps {
   icon: IconNames;
@@ -29,6 +31,15 @@ const icons = {
   ),
   Settings: ({size, color}: IconProps) => (
     <Ionicons name="ios-settings" size={size} color={color} />
+  ),
+  Satoshiv2: ({size, color}: IconProps) => (
+    <Satoshiv2Icon size={size} color={color} />
+  ),
+  Upload: ({size, color}: IconProps) => (
+    <Feather name="upload" size={size} color={color} />
+  ),
+  Download: ({size, color}: IconProps) => (
+    <Feather name="download" size={size} color={color} />
   ),
 };
 

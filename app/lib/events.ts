@@ -1,3 +1,6 @@
+import keys from '@/constants/keys';
+import {RelaysList} from '@/constants/relays';
+import {UserIdentity} from '@/types/identity';
 import {
   NDKEvent,
   NDKPrivateKeySigner,
@@ -5,10 +8,6 @@ import {
   NostrEvent,
 } from '@nostr-dev-kit/ndk';
 import {getPublicKey, nip26} from 'nostr-tools';
-
-import keys from 'constants/keys';
-import {UserIdentity} from 'types/identity';
-import {RelaysList} from 'constants/relays';
 
 export type GenerateIdentityReturns = {
   identity: UserIdentity;

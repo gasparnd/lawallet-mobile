@@ -4,7 +4,10 @@ export type IconNames =
   | 'Check'
   | 'Eye'
   | 'EyeOff'
-  | 'Settings';
+  | 'Settings'
+  | 'Satoshiv2'
+  | 'Upload'
+  | 'Download';
 
 export interface IconProps {
   size?: number;

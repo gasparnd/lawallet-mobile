@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {UserIdentity} from 'types/identity';
+
+import {UserIdentity} from '@/types/identity';
 
 export const defaultUserData: UserIdentity = {
   nonce: '',

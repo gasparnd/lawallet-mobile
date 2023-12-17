@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {createContext, useEffect} from 'react';
 
-import {Transaction, TransactionDirection} from 'types/transaction';
-import {TokenBalance} from 'types/balance';
-import useConfiguration, {ConfigReturns} from 'hooks/useConfiguration';
+import {useActivity, useTokenBalance} from '@/hooks';
+import useConfiguration, {ConfigReturns} from '@/hooks/useConfiguration';
 import useCurrencyConverter, {
   UseConverterReturns,
-} from 'hooks/useCurrencyConverter';
+} from '@/hooks/useCurrencyConverter';
+import {TokenBalance} from '@/types/balance';
+import {Transaction, TransactionDirection} from '@/types/transaction';
 import {useUser} from './UserContext';
-import {useActivity, useTokenBalance} from 'hooks';
 
 export interface LaWalletContextType {
   balance: TokenBalance;
@@ -20,7 +20,11 @@ export interface LaWalletContextType {
 
 export const LaWalletContext = createContext({} as LaWalletContextType);
 
-export function LaWalletProvider({children}: {children: React.ReactNode}) {
+export default function LaWalletProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const {user} = useUser();
 
   // const notifications = useAlert();

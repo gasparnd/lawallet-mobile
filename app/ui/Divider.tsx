@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
-import {useColors} from 'hooks';
+import {useColors} from '@/hooks';
 
 export interface IDividerProps {
   x?: number;

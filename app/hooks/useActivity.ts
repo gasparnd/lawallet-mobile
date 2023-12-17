@@ -15,11 +15,11 @@ import {
   TransactionDirection,
   TransactionStatus,
   TransactionType,
-} from 'types/transaction';
-import {CACHE_TXS_KEY} from 'constants/constants';
-import keys from 'constants/keys';
-import {getMultipleTags, getTag} from 'lib/events';
+} from '@/types/transaction';
 import useSubscription from './useSubscription';
+import keys from '@/constants/keys';
+import {getMultipleTags, getTag} from '@/lib/events';
+import {CACHE_TXS_KEY} from '@/constants/constants';
 
 export interface ActivitySubscriptionProps {
   pubkey: string;

@@ -1,17 +1,27 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "baseUrl": "./app",
     "paths": {
-      "*": ["./app/*"],
-      "components/*": ["./app/components/index"],
-      "ui/*": ["./app/ui/index"],
-      "navigation/*": ["./app/navigation/*"],
-      "screens/*": ["./app/screens/*"],
-      "types/*": ["./app/types/*"],
-      "lib/*": ["./app/lib/*"],
-      "constants/*": ["./app/constants/*"],
-      "context/*": ["./app/context/index"],
-      "hooks/*": ["./app/hooks/*"]
+      "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["app"],
+  "exclude": ["node_modules"]
 }

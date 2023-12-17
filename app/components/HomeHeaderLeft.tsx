@@ -2,9 +2,9 @@ import React from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {useUser} from 'context';
-import {useColors} from 'hooks';
 import {WALLET_DOMAIN} from '@env';
+import {useUser} from '@/context';
+import {useColors} from '@/hooks';
 import CustomText from '../ui/CustomText';
 import Divider from '../ui/Divider';
 import Row from '../ui/Row';

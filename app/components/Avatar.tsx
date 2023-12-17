@@ -1,7 +1,7 @@
-import useColors from 'hooks/useColors';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
+import {useColors} from '@/hooks';
 import CustomText from '../ui/CustomText';
 
 export interface AvatarProps {

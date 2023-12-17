@@ -8,8 +8,8 @@ import {
   View,
 } from 'react-native';
 
-import {useColors} from 'hooks';
-import {Icon} from 'components';
+import {useColors} from '@/hooks';
+import Icon from '../../components/Icon';
 import RightGroup from './RightGroup';
 
 export type InputState = 'normal' | 'error' | 'success' | 'loading';

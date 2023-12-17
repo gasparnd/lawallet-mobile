@@ -1,6 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import {AvailableCurrencies, ConfigProps, defaultConfig} from 'types/config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {AvailableCurrencies, ConfigProps, defaultConfig} from '@/types/config';
 
 export type ConfigReturns = {
   props: ConfigProps;

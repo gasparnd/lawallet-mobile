@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {useTranslation} from 'react-i18next';
-
-import {useAuth} from 'context';
-import {Button, Container, Divider, Heading, Input, WithFixedBottom} from 'ui';
-import {useLoading} from 'hooks';
+import {useLoading} from '@/hooks';
+import {useAuth} from '@/context';
+import {
+  Button,
+  Container,
+  Divider,
+  Heading,
+  Input,
+  WithFixedBottom,
+} from '@/ui';
 
 export default function LoginScreen() {
   const {t} = useTranslation();

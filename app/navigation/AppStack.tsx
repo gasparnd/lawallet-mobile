@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import HomeScreen from 'screens/App/HomeScreen';
-import {HomeHeaderLeft, Icon, ToggleEye} from 'components';
-import {useColors} from 'hooks';
-import {Divider, Row} from 'ui';
+import {useColors} from '@/hooks';
+import HomeScreen from '@/screens/App/HomeScreen';
+import {HomeHeaderLeft, Icon, ToggleEye} from '@/components';
+import {Divider, Row} from '@/ui';
 
 export type AppStackParamList = {
   Home: undefined;

@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
 
-import {Colors} from 'constants/colors';
-import {useColors, useDeviceDimensions} from 'hooks';
+import {useColors, useDeviceDimensions} from '@/hooks';
+import {Colors} from '@/constants/colors';
 
 export interface HeadingProps {
   txt?: string;

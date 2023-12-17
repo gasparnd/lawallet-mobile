@@ -1,6 +1,6 @@
 import {ColorSchemeName, useColorScheme} from 'react-native';
 
-import {Colors} from 'constants/colors';
+import {Colors} from '@/constants/colors';
 
 export default function useColors() {
   const deviceTheme: ColorSchemeName = useColorScheme();

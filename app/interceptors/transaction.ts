@@ -1,26 +1,27 @@
-import { LAWALLET_ENDPOINT } from '@/constants/config'
-import keys from '@/constants/keys'
-import { TransferTypes } from '@/types/transaction'
-import { NostrEvent } from '@nostr-dev-kit/ndk'
+import {NostrEvent} from '@nostr-dev-kit/ndk';
+
+import keys from '@/constants/keys';
+import {TransferTypes} from '@/types/transaction';
+import {laWalletApi} from '@/lib/api';
 
 interface LNServiceResponse {
-  tag: string
-  callback: string
-  metadata: string
-  minSendable?: number
-  maxSendable?: number
-  k1?: string
-  minWithdrawable?: number
-  maxWithdrawable?: number
+  tag: string;
+  callback: string;
+  metadata: string;
+  minSendable?: number;
+  maxSendable?: number;
+  k1?: string;
+  minWithdrawable?: number;
+  maxWithdrawable?: number;
 }
 
 export interface TransferInformation {
-  data: string
-  amount: number
-  receiverPubkey: string
-  walletService: LNServiceResponse | null
-  type: TransferTypes | false
-  expired?: boolean
+  data: string;
+  amount: number;
+  receiverPubkey: string;
+  walletService: LNServiceResponse | null;
+  type: TransferTypes | false;
+  expired?: boolean;
 }
 
 export const defaultTransfer: TransferInformation = {
@@ -28,39 +29,38 @@ export const defaultTransfer: TransferInformation = {
   amount: 0,
   receiverPubkey: keys.urlxPubkey,
   walletService: null,
-  type: false
-}
+  type: false,
+};
 
 export const getWalletService = (url: string): Promise<LNServiceResponse> =>
   fetch(url)
     .then(res => {
-      if (res.status !== 200) return null
-      return res.json()
+      if (res.status !== 200) {
+        return null;
+      }
+      return res.json();
     })
     .then(walletInfo => {
-      if (!walletInfo) return null
-      return walletInfo
+      if (!walletInfo) {
+        return null;
+      }
+      return walletInfo;
     })
-    .catch(() => null)
+    .catch(() => null);
 
 export const requestInvoice = (callback: string) =>
   fetch(callback)
     .then(res => res.json())
     .then(invoiceInfo =>
-      invoiceInfo && invoiceInfo.pr ? invoiceInfo.pr.toLowerCase() : ''
+      invoiceInfo && invoiceInfo.pr ? invoiceInfo.pr.toLowerCase() : '',
     )
-    .catch(() => '')
+    .catch(() => '');
 
 export const broadcastTransaction = async (
-  event: NostrEvent
+  event: NostrEvent,
 ): Promise<boolean> => {
-  return fetch(`${LAWALLET_ENDPOINT}/nostr/publish`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(event)
-  })
+  return laWalletApi
+    .post('/nostr/publish', JSON.stringify(event))
     .then(res => res.status === 200 || res.status === 202)
-    .catch(() => false)
-}
+    .catch(() => false);
+};

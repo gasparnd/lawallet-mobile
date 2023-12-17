@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {AvailableCurrencies} from 'types/config';
 import {useEffect, useState} from 'react';
-import {decimalsToUse, roundToDown} from 'lib/formatter';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {decimalsToUse, roundToDown} from '@/lib/formatter';
 
 const ENDPOINT_PRICE_BTC: string = 'https://api.yadio.io/exrates/btc';
 const UPDATE_PRICES_TIME: number = 60 * 1000;

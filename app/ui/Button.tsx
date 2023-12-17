@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {
   ActivityIndicator,
   DimensionValue,
@@ -9,8 +9,9 @@ import {
   View,
 } from 'react-native';
 
-import {useColors} from 'hooks';
 import Row from './Row';
+import Divider from './Divider';
+import {useColors} from '@/hooks';
 
 export type ButtonSize = 'large' | 'small';
 
@@ -27,6 +28,7 @@ export interface ButtonProps {
   width?: DimensionValue;
   disable?: boolean;
   loading?: boolean;
+  icon?: ReactNode;
 }
 
 export default function Button({
@@ -38,6 +40,7 @@ export default function Button({
   disable,
   loading,
   width,
+  icon,
 }: ButtonProps): React.JSX.Element {
   const {colors} = useColors();
   let backgroundColor: string = 'transparent';
@@ -121,7 +124,17 @@ export default function Button({
         {loading ? (
           <ActivityIndicator color={textColor} />
         ) : (
-          <Text style={styles.text}>{text}</Text>
+          <View>
+            <Row alignItems="center">
+              {icon && (
+                <>
+                  {icon}
+                  <Divider x={4} />
+                </>
+              )}
+              <Text style={styles.text}>{text}</Text>
+            </Row>
+          </View>
         )}
       </Row>
     </TouchableOpacity>

@@ -4,11 +4,10 @@ import {SafeAreaView, View} from 'react-native';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
-import {Button, Container, CustomText, Flex, Row} from 'ui';
-import {Logo} from 'components';
-
-import {AuthStackParamList} from 'navigation/AuthStack';
-import {useColors} from 'hooks';
+import {AuthStackParamList} from '@/navigation/AuthStack';
+import {useColors} from '@/hooks';
+import {Button, Container, CustomText, Flex, Row} from '@/ui';
+import {Logo} from '@/components';
 
 const {version} = require('../../../app.json');
 

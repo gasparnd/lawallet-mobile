@@ -3,9 +3,9 @@ import {useEffect, useState} from 'react';
 import {NDKEvent, NDKKind, NostrEvent} from '@nostr-dev-kit/ndk';
 
 import {useNostrNdk} from '../context/NDKContext';
-import keys from 'constants/keys';
-import {TokenBalance} from 'types/balance';
 import useSubscription from './useSubscription';
+import keys from '@/constants/keys';
+import {TokenBalance} from '@/types/balance';
 
 const {ledgerPubkey} = keys;
 
