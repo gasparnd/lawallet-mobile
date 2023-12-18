@@ -17,6 +17,7 @@
     "@react-native-clipboard/clipboard": "^1.12.1",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
+    "@shopify/flash-list": "^1.6.3",
     "apisauce": "^3.0.1",
     "babel-plugin-module-resolver": "^5.0.0",
     "date-fns": "^2.30.0",
