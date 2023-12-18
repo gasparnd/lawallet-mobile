@@ -8,3 +8,6 @@ export {default as Heading} from './Heading';
 export {default as Row} from './Row';
 export {default as Input} from './Input';
 export {default as WithFixedBottom} from './WithFixedBottom';
+export {default as Accordion} from './Accordion';
+export {default as AccordionBody} from './Accordion/AccordionBody';
+export {default as AccordionTrigger} from './Accordion/AccordionTrigger';

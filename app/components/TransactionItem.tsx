@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useMemo, useState} from 'react';
+import {ActivityIndicator, View} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import {View, Text, ActivityIndicator} from 'react-native';
 
 import {WALLET_DOMAIN} from '@env';
 import {useColors} from '@/hooks';
@@ -15,7 +16,7 @@ import Icons from './Icon';
 import {defaultCurrency} from '@/types/config';
 import {getUsername} from '@/interceptors/identity';
 import {getMultipleTags} from '@/lib/events';
-import {CustomText, Flex} from '@/ui';
+import {Accordion, AccordionBody, CustomText, Divider, Flex, Row} from '@/ui';
 import {dateFormatter, formatToPreference} from '@/lib/formatter';
 
 export interface TransactionItemtProps {
@@ -78,7 +79,7 @@ export default function TransactionItem({
 
       let username: string = '';
       if (transaction.direction === TransactionDirection.INCOMING) {
-        username = await getUsername(transaction.events[0].pubkey);
+        username = (await getUsername(transaction.events[0].pubkey)) as string;
       } else {
         const txPubkeys: string[] = getMultipleTags(
           transaction.events[0].tags,
@@ -89,7 +90,7 @@ export default function TransactionItem({
         }
 
         const receiverPubkey: string = txPubkeys[1];
-        username = await getUsername(receiverPubkey);
+        username = (await getUsername(receiverPubkey)) as string;
       }
 
       username.length
@@ -109,67 +110,68 @@ export default function TransactionItem({
         onOpen={handleOpenAccordion}
         trigger={
           <Flex align="center" gap={8}>
-            <Flex align="center" gap={8}>
-              {/* <Icon>{listTypes[type].icon}</Icon> */}
-              <CustomText>
-                {transaction.status === TransactionStatus.REVERTED
-                  ? t('TX_REVERTED')
-                  : transaction.status === TransactionStatus.ERROR
-                  ? t('FAILED_TRANSACTION')
-                  : transaction.status === TransactionStatus.PENDING
-                  ? t(
-                      `PENDING_${
-                        !isFromMe ? 'INBOUND' : 'OUTBOUND'
-                      }_TRANSACTION`,
-                    )
-                  : isFromMe
-                  ? listTypes[type].label
-                  : t('YOU_RECEIVE')}
-              </CustomText>
-            </Flex>
-            <Flex direction="column" align="end">
-              <CustomText
-                color={
-                  hideBalance
-                    ? colors.text
-                    : transaction.status === TransactionStatus.ERROR ||
-                      transaction.status === TransactionStatus.REVERTED
-                    ? colors.error
+            <Row alignItems="center" justifyContent="space-between">
+              <Flex align="center" gap={8}>
+                {/* <Icon>{listTypes[type].icon}</Icon> */}
+                <CustomText>
+                  {transaction.status === TransactionStatus.REVERTED
+                    ? t('TX_REVERTED')
+                    : transaction.status === TransactionStatus.ERROR
+                    ? t('FAILED_TRANSACTION')
                     : transaction.status === TransactionStatus.PENDING
-                    ? colors.warning
+                    ? t(
+                        `PENDING_${
+                          !isFromMe ? 'INBOUND' : 'OUTBOUND'
+                        }_TRANSACTION`,
+                      )
                     : isFromMe
-                    ? colors.text
-                    : colors.success
-                }>
-                {hideBalance ? (
-                  '*****'
-                ) : (
-                  <>
-                    {!(
-                      transaction.status === TransactionStatus.ERROR ||
-                      transaction.status === TransactionStatus.REVERTED
-                    ) && <>{!isFromMe ? '+ ' : '- '}</>}
-                    {formatToPreference('SAT', satsAmount, lng)} SAT
-                  </>
-                )}
-              </CustomText>
-              <CustomText size="small" color={colors.gray50}>
-                {hideBalance
-                  ? '*****'
-                  : `$${formatToPreference(
-                      currency === 'SAT' ? defaultCurrency : currency,
-                      convertedFiatAmount,
-                      lng,
-                      true,
-                    )} ${currency === 'SAT' ? defaultCurrency : currency}`}
-              </CustomText>
-            </Flex>
+                    ? listTypes[type].label
+                    : t('YOU_RECEIVE')}
+                </CustomText>
+              </Flex>
+              <Flex direction="column" align="end">
+                <CustomText
+                  color={
+                    hideBalance
+                      ? colors.text
+                      : transaction.status === TransactionStatus.ERROR ||
+                        transaction.status === TransactionStatus.REVERTED
+                      ? colors.error
+                      : transaction.status === TransactionStatus.PENDING
+                      ? colors.warning
+                      : isFromMe
+                      ? colors.text
+                      : colors.success
+                  }>
+                  {hideBalance ? (
+                    '*****'
+                  ) : (
+                    <>
+                      {!(
+                        transaction.status === TransactionStatus.ERROR ||
+                        transaction.status === TransactionStatus.REVERTED
+                      ) && <>{!isFromMe ? '+ ' : '- '}</>}
+                      {formatToPreference('SAT', satsAmount)} SAT
+                    </>
+                  )}
+                </CustomText>
+                <CustomText size="small" color={colors.gray50}>
+                  {hideBalance
+                    ? '*****'
+                    : `$${formatToPreference(
+                        currency === 'SAT' ? defaultCurrency : currency,
+                        convertedFiatAmount,
+                        true,
+                      )} ${currency === 'SAT' ? defaultCurrency : currency}`}
+                </CustomText>
+              </Flex>
+            </Row>
           </Flex>
         }>
-        <AccordionBody>
-          <ul>
-            <li>
-              <Flex align="center" justify="space-between">
+        <AccordionBody
+          list={[
+            <View>
+              <Flex align="center" justify="spaceBetween">
                 <CustomText size="small" color={colors.gray50}>
                   {isFromMe ? t('TO') : t('FROM')}
                 </CustomText>
@@ -179,39 +181,38 @@ export default function TransactionItem({
                   <CustomText>{ludInfo.data}</CustomText>
                 )}
               </Flex>
-            </li>
-            <li>
-              <Flex align="center" justify="space-between">
+            </View>,
+            <View>
+              <Flex align="center" justify="spaceBetween">
                 <CustomText size="small" color={colors.gray50}>
                   {t('DATE')}
                 </CustomText>
                 <Flex direction="column" align="end">
                   <CustomText>
                     {dateFormatter(
-                      lng,
                       new Date(Number(transaction.createdAt)),
                       'HH:mm',
                     )}
                   </CustomText>
+                  <Divider y={-7} />
                   <CustomText size="small" color={colors.gray50}>
                     {dateFormatter(
-                      lng,
                       new Date(Number(transaction.createdAt)),
                       'MMMM d, yyyy',
                     )}
                   </CustomText>
                 </Flex>
               </Flex>
-            </li>
-            <li>
-              <Flex align="center" justify="space-between">
+            </View>,
+            <View>
+              <Flex align="center" justify="spaceBetween">
                 <CustomText size="small" color={colors.gray50}>
                   {t('STATUS')}
                 </CustomText>
                 <CustomText>{t(status)}</CustomText>
               </Flex>
-            </li>
-          </ul>
+            </View>,
+          ]}>
           {/* <Flex>
             <Button variant="bezeled" onClick={() => null}>
               {t('SHARE')}

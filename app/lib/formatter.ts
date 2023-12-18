@@ -2,14 +2,13 @@ import {format} from 'date-fns';
 import {enUS, es} from 'date-fns/locale';
 
 import {AvailableCurrencies} from 'types/config';
-import {AvailableLanguages} from '@/localization';
+import {deviceLanguage} from '@/localization/i18n';
 
 export const formatter = (
   minDecimals: number = 2,
   maxDecimals: number = 2,
-  lng: AvailableLanguages,
 ): Intl.NumberFormat =>
-  new Intl.NumberFormat(lng === 'en' ? 'en-US' : 'es-AR', {
+  new Intl.NumberFormat(deviceLanguage === 'en' ? 'en-US' : 'es-AR', {
     // These options are needed to round to whole numbers if that's what you want.
     minimumFractionDigits: minDecimals, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: maxDecimals, // (causes 2500.99 to be printed as $2,501)
@@ -68,12 +67,11 @@ export const formatAddress = (address: string, size: number = 22): string => {
 };
 
 export const dateFormatter = (
-  lng: AvailableLanguages,
   date: Date | number,
   strFormat?: string,
 ): string => {
   return format(date, strFormat ?? 'MMM d, yyyy. HH:mm a', {
-    locale: lng === 'es' ? es : enUS,
+    locale: deviceLanguage === 'es' ? es : enUS,
   });
 };
 
@@ -85,7 +83,7 @@ export const lowerText = (text: string): string =>
 export const formatToPreference = (
   currency: AvailableCurrencies,
   amount: number,
-  lng: AvailableLanguages,
+
   round?: boolean,
 ): string => {
   const maxDecimals: number = decimalsToUse(currency);
@@ -94,7 +92,6 @@ export const formatToPreference = (
   const formattedAmount: string = formatter(
     minDecimals,
     maxDecimals < minDecimals ? minDecimals : maxDecimals,
-    lng,
   ).format(amount);
 
   return formattedAmount;

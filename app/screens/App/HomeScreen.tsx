@@ -3,7 +3,7 @@ import React, {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
-import {Icon, TokenList} from '@/components';
+import {Icon, TokenList, TransactionItem} from '@/components';
 import {useLaWallet} from '@/context';
 import {useColors} from '@/hooks';
 import {formatToPreference} from '@/lib/formatter';
@@ -18,7 +18,6 @@ export default function HomeScreen() {
     sortedTransactions,
     userConfig: {
       loading,
-      toggleHideBalance,
       props: {hideBalance, currency},
     },
     converter: {pricesData, convertCurrency},
@@ -26,7 +25,7 @@ export default function HomeScreen() {
 
   const convertedBalance: string = useMemo(() => {
     const amount: number = convertCurrency(balance.amount, 'SAT', currency);
-    return formatToPreference(currency, amount, 'en');
+    return formatToPreference(currency, amount);
   }, [balance, pricesData, currency]);
 
   const styles = StyleSheet.create({
@@ -93,10 +92,15 @@ export default function HomeScreen() {
         <Divider y={10} />
         <View>
           <Row alignItems="center" justifyContent="space-between">
-            <CustomText txt={t('LAST_ACTIVITY')} />
+            <CustomText color={colors.gray50} txt={t('LAST_ACTIVITY')} />
             <Button size="small" text={t('SEE_ALL')} type="borderless" />
           </Row>
           <Divider y={8} />
+          <Flex direction="column" gap={4}>
+            {sortedTransactions.slice(0, 5).map(transaction => (
+              <TransactionItem key={transaction.id} transaction={transaction} />
+            ))}
+          </Flex>
         </View>
       </Container>
     </View>
