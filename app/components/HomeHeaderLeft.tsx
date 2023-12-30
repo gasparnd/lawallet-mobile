@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View} from 'react-native';
 import {useTranslation} from 'react-i18next';
@@ -15,7 +16,7 @@ export default function HomeHeaderLeft() {
   const {colors} = useColors();
   const {t} = useTranslation();
   return (
-    <View>
+    <View style={{marginLeft: 10}}>
       <Row alignItems="center">
         <Avatar name={user.username} />
         <Divider x={4} />
