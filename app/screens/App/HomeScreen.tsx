@@ -5,12 +5,13 @@ import {useTranslation} from 'react-i18next';
 
 import {Icon, TokenList, TransactionItem} from '@/components';
 import {useLaWallet} from '@/context';
-import {useColors} from '@/hooks';
+import {useAppNavigation, useColors} from '@/hooks';
 import {formatToPreference} from '@/lib/formatter';
 import {Button, Container, CustomText, Divider, Flex, Heading, Row} from '@/ui';
 
 export default function HomeScreen() {
   const {t} = useTranslation();
+  const {navigate} = useAppNavigation();
   const {colors} = useColors();
   const {
     balance,
@@ -34,6 +35,14 @@ export default function HomeScreen() {
       borderBottomRightRadius: 20,
     },
   });
+
+  const onDepositBtn = () => {
+    navigate('Deposit');
+  };
+
+  const onTransferBtn = () => {
+    navigate('Transfer');
+  };
 
   return (
     <ScrollView>
@@ -72,6 +81,7 @@ export default function HomeScreen() {
       <Container>
         <Row justifyContent="space-between">
           <Button
+            onPress={onDepositBtn}
             icon={<Icon icon="Download" size={18} color={colors.black} />}
             text={t('DEPOSIT')}
             type="filled"
@@ -79,6 +89,7 @@ export default function HomeScreen() {
             width="48%"
           />
           <Button
+            onPress={onTransferBtn}
             icon={<Icon icon="Upload" size={18} color={colors.black} />}
             text={t('TRANSFER')}
             type="filled"

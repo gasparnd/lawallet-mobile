@@ -2,18 +2,16 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 import {HomeHeaderLeft, Icon, TabBar, ToggleEye} from '@/components';
 import HomeScreen from '@/screens/App/HomeScreen';
 import {Divider, Row} from '@/ui';
-import {useColors} from '@/hooks';
-import {AppStackParamList} from './AppStack';
+import {useAppNavigation, useColors} from '@/hooks';
 
 const Tab = createBottomTabNavigator();
 
 export default function AppMenu() {
-  const {navigate} = useNavigation<NavigationProp<AppStackParamList>>();
+  const {navigate} = useAppNavigation();
   const {colors} = useColors();
   const [eyeOn, setEyeOn] = React.useState<boolean>(true);
 

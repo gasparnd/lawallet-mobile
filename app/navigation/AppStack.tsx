@@ -4,12 +4,16 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppMenu from './AppMenu';
 import QRScannerScreen from '@/screens/App/QRScannerScreen';
 import SettingsScreen from '@/screens/App/SettingsScreen';
+import DepositScreen from '@/screens/App/DepositScreen';
+import TransferScreen from '@/screens/App/TransferScreen';
 
 export type AppStackParamList = {
   Home: undefined;
   AppMenu: undefined;
   QRScanner: undefined;
   Settings: undefined;
+  Deposit: undefined;
+  Transfer: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -30,6 +34,16 @@ export default function AppStack() {
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Stack.Screen
+        name="Deposit"
+        component={DepositScreen}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Stack.Screen
+        name="Transfer"
+        component={TransferScreen}
         options={{headerBackTitleVisible: false}}
       />
     </Stack.Navigator>
