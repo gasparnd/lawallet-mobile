@@ -34,6 +34,20 @@ export default function AuthProvider({children}: React.PropsWithChildren<any>) {
   const [error, setError] = React.useState<string | null>(null);
   const {setUser} = useUser();
 
+  React.useEffect(() => {
+    (async () => {
+      if (logged) {
+        return;
+      }
+      const userData = await AsyncStorage.getItem('userIdentity');
+      if (userData) {
+        const userIdentity = JSON.parse(userData);
+        setUser(userIdentity);
+        setLogged(true);
+      }
+    })();
+  }, [logged, setUser, setLogged]);
+
   const loginWithPrivateKey = async (privateKey: string) => {
     try {
       const hexpub: string = getPublicKey(privateKey);

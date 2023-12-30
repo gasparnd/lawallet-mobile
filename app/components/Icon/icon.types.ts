@@ -7,7 +7,8 @@ export type IconNames =
   | 'Settings'
   | 'Satoshiv2'
   | 'Upload'
-  | 'Download';
+  | 'Download'
+  | 'QR';
 
 export interface IconProps {
   size?: number;

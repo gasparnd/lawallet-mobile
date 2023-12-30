@@ -1,45 +1,29 @@
-/* eslint-disable react/no-unstable-nested-components */
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {useColors} from '@/hooks';
-import HomeScreen from '@/screens/App/HomeScreen';
-import {HomeHeaderLeft, Icon, ToggleEye} from '@/components';
-import {Divider, Row} from '@/ui';
+import AppMenu from './AppMenu';
+import QRScannerScreen from '@/screens/App/QRScannerScreen';
 
 export type AppStackParamList = {
   Home: undefined;
+  AppMenu: undefined;
+  QRScanner: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export default function AppStack() {
-  const {colors} = useColors();
-  const [eyeOn, setEyeOn] = useState<boolean>(true);
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="AppMenu">
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerTitle: '',
-          headerLeft: () => <HomeHeaderLeft />,
-          headerRight: () => (
-            <View>
-              <Row alignItems="center">
-                <ToggleEye
-                  eyeOn={eyeOn}
-                  setEyeOn={setEyeOn}
-                  size={17}
-                  color={colors.primary}
-                />
-                <Divider x={8} />
-                <Icon icon="Settings" size={17} color={colors.primary} />
-              </Row>
-            </View>
-          ),
-        }}
+        name="AppMenu"
+        component={AppMenu}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="QRScanner"
+        component={QRScannerScreen}
+        options={{headerBackTitleVisible: false}}
       />
     </Stack.Navigator>
   );

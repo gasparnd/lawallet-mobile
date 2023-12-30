@@ -41,6 +41,9 @@ const icons = {
   Download: ({size, color}: IconProps) => (
     <Feather name="download" size={size} color={color} />
   ),
+  QR: ({size, color}: IconProps) => (
+    <Ionicons name="ios-qr-code-outline" size={size} color={color} />
+  ),
 };
 
 export default function Icons(props: IconsProps): React.JSX.Element {
