@@ -32,7 +32,7 @@ export default function LaWalletProvider({
   const {activityInfo, sortedTransactions} = useActivity({
     pubkey: user.hexpub,
     enabled: Boolean(user.hexpub.length),
-    limit: 100,
+    limit: 1,
   });
 
   const userConfig: ConfigReturns = useConfiguration();
