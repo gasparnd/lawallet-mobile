@@ -17,7 +17,7 @@ export type ButtonSize = 'large' | 'small';
 
 export type ButtonTypes = 'borderless' | 'bezeled-gray' | 'bezeled' | 'filled';
 
-export type ButtonColors = 'primary' | 'secondary';
+export type ButtonColors = 'primary' | 'secondary' | 'error';
 
 export interface ButtonProps {
   text: string;

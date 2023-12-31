@@ -75,6 +75,7 @@ export default function AuthProvider({children}: React.PropsWithChildren<any>) {
   };
 
   const logout = async () => {
+    await AsyncStorage.removeItem('userIdentity');
     setLogged(false);
   };
 

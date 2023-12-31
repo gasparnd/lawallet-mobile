@@ -8,7 +8,8 @@ export type IconNames =
   | 'Satoshiv2'
   | 'Upload'
   | 'Download'
-  | 'QR';
+  | 'QR'
+  | 'RightArrow';
 
 export interface IconProps {
   size?: number;

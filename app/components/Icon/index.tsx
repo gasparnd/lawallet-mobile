@@ -44,6 +44,9 @@ const icons = {
   QR: ({size, color}: IconProps) => (
     <Ionicons name="ios-qr-code-outline" size={size} color={color} />
   ),
+  RightArrow: ({size, color}: IconProps) => (
+    <MaterialIcons name="keyboard-arrow-right" size={size} color={color} />
+  ),
 };
 
 export default function Icons(props: IconsProps): React.JSX.Element {

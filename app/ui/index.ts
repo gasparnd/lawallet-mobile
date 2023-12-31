@@ -11,3 +11,4 @@ export {default as WithFixedBottom} from './WithFixedBottom';
 export {default as Accordion} from './Accordion';
 export {default as AccordionBody} from './Accordion/AccordionBody';
 export {default as AccordionTrigger} from './Accordion/AccordionTrigger';
+export {default as ButtomSetting} from './ButtomSetting';
