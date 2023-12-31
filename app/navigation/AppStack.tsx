@@ -7,6 +7,7 @@ import SettingsScreen from '@/screens/App/SettingsScreen';
 import DepositScreen from '@/screens/App/DepositScreen';
 import TransferScreen from '@/screens/App/TransferScreen';
 import BackupAccountScreen from '@/screens/App/BackupAccountScreen';
+import {useTranslation} from 'react-i18next';
 
 export type AppStackParamList = {
   Home: undefined;
@@ -20,8 +21,11 @@ export type AppStackParamList = {
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export default function AppStack() {
+  const {t} = useTranslation();
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerBackTitle: t('BACK')}}>
       <Stack.Screen
         name="Home"
         component={AppMenu}
@@ -30,27 +34,27 @@ export default function AppStack() {
       <Stack.Screen
         name="QRScanner"
         component={QRScannerScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerTitle: t('SCAN_QR')}}
       />
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerTitle: t('SETTINGS')}}
       />
       <Stack.Screen
         name="Deposit"
         component={DepositScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerTitle: t('DEPOSIT')}}
       />
       <Stack.Screen
         name="Transfer"
         component={TransferScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerTitle: t('TRANSFER_MONEY')}}
       />
       <Stack.Screen
         name="BackupAccount"
         component={BackupAccountScreen}
-        options={{headerBackTitleVisible: false}}
+        options={{headerTitle: t('BACKUP_ACCOUNT')}}
       />
     </Stack.Navigator>
   );
