@@ -10,7 +10,6 @@ import BackupAccountScreen from '@/screens/App/BackupAccountScreen';
 
 export type AppStackParamList = {
   Home: undefined;
-  AppMenu: undefined;
   QRScanner: undefined;
   Settings: undefined;
   BackupAccount: undefined;
@@ -22,9 +21,9 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export default function AppStack() {
   return (
-    <Stack.Navigator initialRouteName="AppMenu">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        name="AppMenu"
+        name="Home"
         component={AppMenu}
         options={{headerShown: false}}
       />

@@ -41,7 +41,7 @@ export default function BackupAccount() {
   };
 
   const onCancel = () => {
-    navigate('AppMenu');
+    navigate('Home');
   };
 
   const styles = StyleSheet.create({
