@@ -6,3 +6,4 @@ export {default as ToggleEye} from './ToggleEye';
 export {default as TokenList} from './TokenList';
 export {default as TransactionItem} from './TransactionItem';
 export {default as TabBar} from './TabBar';
+export {default as CopyText} from './CopyText';

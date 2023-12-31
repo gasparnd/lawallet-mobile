@@ -24,9 +24,9 @@ export default function SettingsScreen() {
           {t('MY_WALLET')}
         </CustomText>
         <Divider y={8} />
-        <ButtomSetting route="Transfer"> {t('BACKUP_ACCOUNT')}</ButtomSetting>
-        <Divider y={4} />
-        <ButtomSetting route="Home">{t('MY_WALLET')}</ButtomSetting>
+        <ButtomSetting route="BackupAccount">
+          {t('BACKUP_ACCOUNT')}
+        </ButtomSetting>
         <Divider y={8} />
         <CustomText size="small" color={colors.gray50}>
           {t('ABOUT_US')}

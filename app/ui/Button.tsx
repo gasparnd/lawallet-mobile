@@ -34,7 +34,7 @@ export interface ButtonProps {
 export default function Button({
   text,
   onPress,
-  type,
+  type = 'filled',
   color = 'primary',
   size = 'large',
   disable,

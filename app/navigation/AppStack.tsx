@@ -6,12 +6,14 @@ import QRScannerScreen from '@/screens/App/QRScannerScreen';
 import SettingsScreen from '@/screens/App/SettingsScreen';
 import DepositScreen from '@/screens/App/DepositScreen';
 import TransferScreen from '@/screens/App/TransferScreen';
+import BackupAccountScreen from '@/screens/App/BackupAccountScreen';
 
 export type AppStackParamList = {
   Home: undefined;
   AppMenu: undefined;
   QRScanner: undefined;
   Settings: undefined;
+  BackupAccount: undefined;
   Deposit: undefined;
   Transfer: undefined;
 };
@@ -44,6 +46,11 @@ export default function AppStack() {
       <Stack.Screen
         name="Transfer"
         component={TransferScreen}
+        options={{headerBackTitleVisible: false}}
+      />
+      <Stack.Screen
+        name="BackupAccount"
+        component={BackupAccountScreen}
         options={{headerBackTitleVisible: false}}
       />
     </Stack.Navigator>
